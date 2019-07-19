@@ -1,0 +1,26 @@
+<div>
+    <nav>
+        <div>
+                <p>Categories:</p>
+                {% for cat in category %} 
+        <option value="name">{{ cat.name }}</option>
+    {% endfor %} 
+            <a href="{% url 'reviews:review_list' %}">Restaurant Reviews</a>
+        </div>
+        <div id="navbar">
+            <ul>
+                <li><a href="{% url 'reviews:restaurant_list' %}">Restaurant List</a></li>
+                <li><a href="{% url 'reviews:review_list' %}">Home</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'reviews:user_review_list' user.username %}">Hello {{ user.username }}</a></li>
+                    {% endif %}
+                </ul>
+        </div>
+    </nav>
+    
+    <h1>{% block title %}(no title){% endblock %}</h1>
+
+    {% block content %}(no content){% endblock %}
+</div>
